@@ -14,11 +14,11 @@ public class Main {
             
             for (int i=1; i<=COL_NUM; i++) {
                 System.out.print(String.format("%"+digits+"d", i));
-                    if (i<COL_NUM) {
-                        System.out.print(" ");
-                    } else {
-                        System.out.print("\r\n");
-                    }
+                if (i<COL_NUM) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print("\r\n");
+                }
             }
             
             // Œrüo—Í
