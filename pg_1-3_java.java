@@ -10,6 +10,7 @@ public class Main {
             
             String word = Integer.toString(i);
             
+        	//3
             if ( i % 3 == 0){
             
                 System.out.println("hoge");
