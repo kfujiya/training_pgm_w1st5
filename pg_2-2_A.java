@@ -2,12 +2,12 @@ import java.util.*;
 
 public class Main {
     
-    //‰ñ•¶‚©‚Ç‚¤‚©”»’è‚·‚éƒƒ\ƒbƒh
+    //å›æ–‡ã‹ã©ã†ã‹åˆ¤å®šã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     private static boolean isPal(String s) {
         int left = 0;
         int right = s.length() - 1;
         
-        //¶‚©‚ç‚ÌÅ‰‚Ì•¶š‚Æ‰E‚©‚ç‚ÌÅ‰‚Ì•¶š‚ªˆê’v‚µ‚Ä‚¢‚é‚©ƒ‹[ƒv‚Å•¶šƒ`ƒFƒbƒN
+        //å·¦ã‹ã‚‰ã®æœ€åˆã®æ–‡å­—ã¨å³ã‹ã‚‰ã®æœ€åˆã®æ–‡å­—ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ãƒ«ãƒ¼ãƒ—ã§æ–‡å­—ãƒã‚§ãƒƒã‚¯
         while (left < right) {
             if (s.charAt(left) != s.charAt(right)) {
                 return false;
@@ -21,21 +21,21 @@ public class Main {
     
     public static void main(String[] args) throws Exception {
         
-        //“ü—Í
+        //å…¥åŠ›
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         
         int maxLength = 0;
         String longestPal = "";
         
-        //“ü—Í•¶‚Ì’†‚É‰ñ•¶‚ÌÅ’·•¶š—ñ‚ğŒ©‚Â‚¯‚éˆ×Aƒ‹[ƒv‚Å•¶š—áƒ`ƒFƒbƒN
+        //å…¥åŠ›æ–‡ã®ä¸­ã«å›æ–‡ã®æœ€é•·æ–‡å­—åˆ—ã‚’è¦‹ã¤ã‘ã‚‹ç‚ºã€ãƒ«ãƒ¼ãƒ—ã§æ–‡å­—ä¾‹ãƒã‚§ãƒƒã‚¯
         for (int i = 0; i < input.length(); i++) {
             for (int j = i + 2; j <= input.length(); j++) {
                 
-                //“ü—Í•¶‚©‚ç•¶š—ñ‚ğˆø‚«o‚µ
+                //å…¥åŠ›æ–‡ã‹ã‚‰æ–‡å­—åˆ—ã‚’å¼•ãå‡ºã™
                 String substring = input.substring(i, j);
                 
-                //•¶š—ñ‚Í‰ñ•¶‚©‚Ç‚¤‚©ƒƒ\ƒbƒh‚Å”»’èA‚©‚Â•¶š—ñ‚Í‰ñ•¶‚ÌÅ’·•¶š—ñ”»’è
+                //æ–‡å­—åˆ—ã¯å›æ–‡ã‹ã©ã†ã‹ãƒ¡ã‚½ãƒƒãƒ‰ã§åˆ¤å®šã€ã‹ã¤æ–‡å­—åˆ—ã¯å›æ–‡ã®æœ€é•·æ–‡å­—åˆ—åˆ¤å®š
                 if (isPal(substring) && substring.length() > maxLength) {
                     maxLength = substring.length();
                     longestPal = substring;
@@ -43,7 +43,7 @@ public class Main {
             }
         }
         
-        //o—Í
+        //å‡ºåŠ›
         System.out.println(longestPal);
     }
 }

@@ -3,33 +3,33 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
     
-        //•¶š—ñ“ü—Í‰ñ”
+        //æ–‡å­—åˆ—å…¥åŠ›å›æ•°
         Scanner sc = new Scanner(System.in);
         int input = Integer.parseInt(sc.nextLine());
         
-        //Setƒf[ƒ^‚ğg—p‚µ‚ÄAŠù‚É“oê‚µ‚½•¶š—ñ‚ğ•Û
+        //Setãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã€æ—¢ã«ç™»å ´ã—ãŸæ–‡å­—åˆ—ã‚’ä¿æŒ
         Set<String> seenStrings = new HashSet<>();
         
-        //Set‚ÉŠù‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©Šm”F
+        //Setã«æ—¢ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ç¢ºèª
         for (int i = 0; i < input; i++) {
         
-            //•¶š—ñ“ü—Í
+            //æ–‡å­—åˆ—å…¥åŠ›
             String wordEnt = sc.nextLine();
             
-            //ŠÜ‚Ü‚ê‚Ä‚¢‚éê‡
+            //å«ã¾ã‚Œã¦ã„ã‚‹å ´åˆ
             if (seenStrings.contains(wordEnt)) {
             
-                //o—Í
-                System.out.println("‚à‚¤Œ©‚½");
+                //å‡ºåŠ›
+                System.out.println("ã‚‚ã†è¦‹ãŸ");
             
-            //ŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢ê‡
+            //å«ã¾ã‚Œã¦ã„ãªã„å ´åˆ
             } else {
             
-                //“oê‚µ‚Ä‚È‚¢•¶š—ñ‚ğSetƒf[ƒ^‚É‘}“ü
+                //ç™»å ´ã—ã¦ãªã„æ–‡å­—åˆ—ã‚’Setãƒ‡ãƒ¼ã‚¿ã«æŒ¿å…¥
                 seenStrings.add(wordEnt);
                 
-                //o—Í
-                System.out.println("‚©‚í‚¢‚¢`");
+                //å‡ºåŠ›
+                System.out.println("ã‹ã‚ã„ã„ï½");
                 
             }
         }
