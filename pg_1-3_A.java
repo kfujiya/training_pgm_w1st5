@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Your code here!
         
         int i;
         
@@ -10,15 +9,14 @@ public class Main {
             
             String word = Integer.toString(i);
             
-        	//3
-            if ( i % 3 == 0){
+            if (i % 3 == 0){
             
                 System.out.println("hoge");
                 
                 continue;
             }
             
-            if ( word.contains("3")){
+            if (word.contains("3")){
              
                 System.out.println("hoge");
                 
