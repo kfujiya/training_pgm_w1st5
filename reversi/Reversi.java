@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reversi {
 
@@ -8,9 +9,9 @@ public class Reversi {
 	public static void main(String[] args) throws Exception {
 
 		//ゲームの初期化。オブジェクトを作って、盤面を初期化する。
-		Game game = new Game();
-		game.FieldInitialized();
-		game.PrintField();        //初期化状態の出力
+		Game game = new Game(8);
+		game.initialize();
+		game.printBoard();        //初期化状態の出力
 
 		//開始プレイヤーの色を決定する
 		int player = BLACK;
@@ -49,6 +50,7 @@ public class Reversi {
 		game.PrintField();        //最終結果のフィールド表示
 		game.PrintResult();
 	}
+}
 
 /**
  * ゲーム処理本体
@@ -75,6 +77,7 @@ class Game {
 			// 横(行)
 			for(int x = 1; x < boardSize+1; x++) {
 				// 座標(x,y)の中身を空にする
+				board[y][x] = Global.EMPTY;
 			}
 
 			// ボードの左右端を壁(石が置けない領域)にする
@@ -84,12 +87,17 @@ class Game {
 
 		// ボードの上下端を壁(石が置けない領域)にする
 		for(int x = 1; x < boardSize+1; x++) {
-
 			// please write down
+			board[0][x] = Global.WALL;
+			board[boardSize+1][x] = Global.WALL;
 		}
 		
 		// 真ん中に初期石を置く
 		// please write down
+		board[half][half] = Global.WHITE;
+		board[half][half+1] = Global.BLACK;
+		board[half+1][half] = Global.BLACK;
+		board[half+1][half+1] = Global.WHITE;
 	}
 	
 	// 盤面を出力する
