@@ -50,6 +50,7 @@ public class Reversi {
 		game.PrintField();        //最終結果のフィールド表示
 		game.PrintResult();
 	}
+}
 
 /**
  * ゲーム処理本体
@@ -227,7 +228,8 @@ class Game {
 
 		// 黒が多ければ黒の勝ち、白が多ければ白の勝ち、同数なら...
 	}
-	
+}
+
 /**
  * 二次元配列構造体
  */
@@ -251,6 +253,3 @@ class Global {
 	static final int LEFT  = 1;	//勝敗用[黒勝利]
 	static final int RIGHT = 2; //勝敗用[白勝利]
 }
-}
-
- 
