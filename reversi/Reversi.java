@@ -227,6 +227,30 @@ class Game {
 
 		// 黒が多ければ黒の勝ち、白が多ければ白の勝ち、同数なら...
 	}
+	
+/**
+ * 二次元配列構造体
+ */
+
+class Point {
+	int col;	// x
+	int row;	// y
+}
+
+
+/**
+ * グローバル値(石の色と勝敗定義)
+ */
+class Global {
+	static final int WALL = 0;
+	static final int BLACK = 1;
+	static final int WHITE = 2;
+	static final int EMPTY = 3;
+
+	static final int DRAW  = 0;	//勝敗用[引き分け]
+	static final int LEFT  = 1;	//勝敗用[黒勝利]
+	static final int RIGHT = 2; //勝敗用[白勝利]
+}
 }
 
  
