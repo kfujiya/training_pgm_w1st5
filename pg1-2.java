@@ -3,13 +3,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         // pg1-2
-        int ROW_NUM = 9;  //‚©‚¯‚ç‚ê‚é‰ñ”
-        int COL_NUM = 9;  //‚©‚¯‚é‰ñ”
+        int ROW_NUM = 9;  //ã‹ã‘ã‚‰ã‚Œã‚‹å›æ•°
+        int COL_NUM = 9;  //ã‹ã‘ã‚‹å›æ•°
         
         if (ROW_NUM>0 && COL_NUM>0) {
-            int digits = String.valueOf(ROW_NUM*COL_NUM).length(); //Å‘åŒ…”
+            int digits = String.valueOf(ROW_NUM*COL_NUM).length(); //æœ€å¤§æ¡æ•°
     
-            // ƒwƒbƒ_[o—Í
+            // ãƒ˜ãƒƒãƒ€ãƒ¼å‡ºåŠ›
             System.out.print(String.format("%"+digits+"s", "") + "|");
             
             for (int i=1; i<=COL_NUM; i++) {
@@ -17,14 +17,14 @@ public class Main {
                 if (i<COL_NUM) {
                     System.out.print(" ");
                 } else {
-                    System.out.print("\r\n");
+                    System.out.println();
                 }
             }
             
-            // Œrüo—Í
+            // ç½«ç·šå‡ºåŠ›
             System.out.println(String.join("", Collections.nCopies(digits+digits*COL_NUM+COL_NUM, "-")));
             
-            // Œ‹‰Êo—Í
+            // çµæœå‡ºåŠ›
             for (int i=1; i<=ROW_NUM; i++) {
                 System.out.print(String.format("%"+digits+"d", i) + "|");
                 for (int j=1; j<=COL_NUM ; j++) {
@@ -32,7 +32,7 @@ public class Main {
                     if (j<COL_NUM) {
                         System.out.print(" ");
                     } else {
-                        System.out.print("\r\n");
+                        System.out.println();
                     }
                 }
             }

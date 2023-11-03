@@ -3,11 +3,11 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         // pg1-3
-        int MIN_NUM = 1; //Å¬’l
-        int MAX_NUM = 100; //Å‘å’l
-        int HOGE_NUM = 3; // Žw’è”’l
+        int MIN_NUM = 1; //æœ€å°å€¤
+        int MAX_NUM = 100; //æœ€å¤§å€¤
+        int HOGE_NUM = 3; // æŒ‡å®šæ•°å€¤
         
-        // Å¬’l‚ÆÅ‘å’l‚ª³‚µ‚­Ý’è‚³‚ê‚Ä‚¢‚È‚¢ê‡’l‚ð“ü‚ê‘Ö‚¦‚é
+        // æœ€å°å€¤ã¨æœ€å¤§å€¤ãŒæ­£ã—ãè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆå€¤ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
         if (MIN_NUM>MAX_NUM) {
             int temp = MIN_NUM;
             MIN_NUM = MAX_NUM;
@@ -15,7 +15,7 @@ public class Main {
         }
         
         for (int i=MIN_NUM; i<=MAX_NUM; i++) {
-            // Žw’è‚µ‚½”’l‚Ì”{”‚Ü‚½‚Í‚Ç‚±‚©‚ÌŒ…‚ÉŽw’è‚µ‚½”’l‚ª‚ ‚é”‚Ìê‡‚Í‘ã‚í‚è‚Éghogeh‚ðo—Í
+            // æŒ‡å®šã—ãŸæ•°å€¤ã®å€æ•°ã¾ãŸã¯ã©ã“ã‹ã®æ¡ã«æŒ‡å®šã—ãŸæ•°å€¤ãŒã‚ã‚‹æ•°ã®å ´åˆã¯ä»£ã‚ã‚Šã«â€œhogeâ€ã‚’å‡ºåŠ›
             if ((HOGE_NUM!=0 && i!=0 && (i%HOGE_NUM)==0) || Integer.toString(i).contains(Integer.toString(HOGE_NUM))) {
                 System.out.println("hoge");
             } else {
