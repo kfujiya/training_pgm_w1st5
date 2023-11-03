@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
     
-    // ˆÚ“®Œã‚ÌÀ•W‚ğ•Û‚·‚éƒNƒ‰ƒX
+    // ç§»å‹•å¾Œã®åº§æ¨™ã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹
     public static class Position {
         private int x;
         private int y;
@@ -24,74 +24,74 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // pg3-1
         
-        // ”Õ–Ê‚Ì”ÍˆÍ‚ğİ’è‚µì¬
+        // ç›¤é¢ã®ç¯„å›²ã‚’è¨­å®šã—ä½œæˆ
         final int N = 10;
         int[][] board = new int[N+1][N+1];
         Queue<Position> queue = new ArrayDeque<>();
         
-        // ”Õ–Ê‚ğ-1‚Å‰Šú‰»
+        // ç›¤é¢ã‚’-1ã§åˆæœŸåŒ–
         for (int i=0; i<=N; i++) {
             for (int j=0; j<=N; j++) {
                 board[i][j] = -1;
             }
         }
         
-        // •W€“ü—Í‚ğæ“¾
+        // æ¨™æº–å…¥åŠ›ã‚’å–å¾—
         Scanner sc = new Scanner(System.in);
         
-        // –Ú“IÀ•W
+        // ç›®çš„åº§æ¨™
         int X = Integer.parseInt(sc.next());
         int Y = Integer.parseInt(sc.next());
         
-        // Œ»İÀ•W
+        // ç¾åœ¨åº§æ¨™
         int currentX = 0;
         int currentY = 0;
         
-        // ‰Šúó‘Ôİ’èi0, 0j
+        // åˆæœŸçŠ¶æ…‹è¨­å®šï¼ˆ0, 0ï¼‰
         board[currentY][currentX] = 0;
         queue.add(new Position(currentX, currentY));
         
-        // ˆÚ“®‰ñ”ŒvZ((0,0)‚©‚ç(10,10)‚Ì”ÍˆÍ“à‚©‚Â–¢’Tõ(-1)‚Å‚ ‚ê‚ÎˆÚ“®Œã‚ÌÀ•W‚ğƒLƒ…[‚É‘}“ü)
+        // ç§»å‹•å›æ•°è¨ˆç®—((0,0)ã‹ã‚‰(10,10)ã®ç¯„å›²å†…ã‹ã¤æœªæ¢ç´¢(-1)ã§ã‚ã‚Œã°ç§»å‹•å¾Œã®åº§æ¨™ã‚’ã‚­ãƒ¥ãƒ¼ã«æŒ¿å…¥)
         while (queue.peek() != null) {
-            // ˆÚ“®Œ³À•W‚ğæ“¾
+            // ç§»å‹•å…ƒåº§æ¨™ã‚’å–å¾—
             Position n = queue.poll();
             
-            // x+1 y+2 ˆÚ“®
+            // x+1 y+2 ç§»å‹•
             if (n.getX()+1 >= 0 && n.getY()+2 >= 0 && n.getX()+1 <= N && n.getY()+2 <= N && board[n.getY()+2][n.getX()+1] == -1) { 
                 queue.add(new Position(n.getX()+1, n.getY()+2));
                 board[n.getY()+2][n.getX()+1] = board[n.getY()][n.getX()] + 1;
             }
-            // x+2 y+1 ˆÚ“®
+            // x+2 y+1 ç§»å‹•
             if (n.getX()+2 >= 0 && n.getY()+1 >= 0 && n.getX()+2 <= N && n.getY()+1 <= N && board[n.getY()+1][n.getX()+2] == -1) { 
                 queue.add(new Position(n.getX()+2, n.getY()+1));
                 board[n.getY()+1][n.getX()+2] = board[n.getY()][n.getX()] + 1;
             }
-            // x-1 y+2 ˆÚ“®
+            // x-1 y+2 ç§»å‹•
             if (n.getX()-1 >= 0 && n.getY()+2 >= 0 && n.getX()-1 <= N && n.getY()+2 <= N && board[n.getY()+2][n.getX()-1] == -1) { 
                 queue.add(new Position(n.getX()-1, n.getY()+2));
                 board[n.getY()+2][n.getX()-1] = board[n.getY()][n.getX()] + 1;
             }
-            // x-2 y+1 ˆÚ“®
+            // x-2 y+1 ç§»å‹•
             if (n.getX()-2 >= 0 && n.getY()+1 >= 0 && n.getX()-2 <= N && n.getY()+1 <= N && board[n.getY()+1][n.getX()-2] == -1) { 
                 queue.add(new Position(n.getX()-2, n.getY()+1));
                 board[n.getY()+1][n.getX()-2] = board[n.getY()][n.getX()] + 1;
             }
-            // x+1 y-2 ˆÚ“®
+            // x+1 y-2 ç§»å‹•
             if (n.getX()+1 >= 0 && n.getY()-2 >= 0 && n.getX()+1 <= N && n.getY()-2 <= N && board[n.getY()-2][n.getX()+1] == -1) { 
                 queue.add(new Position(n.getX()+1, n.getY()-2));
                 board[n.getY()-2][n.getX()+1] = board[n.getY()][n.getX()] + 1;
             }
-            // x+2 y-1 ˆÚ“®
+            // x+2 y-1 ç§»å‹•
             if (n.getX()+2 >= 0 && n.getY()-1 >= 0 && n.getX()+2 <= N && n.getY()-1 <= N && board[n.getY()-1][n.getX()+2] == -1) { 
                 queue.add(new Position(n.getX()+2, n.getY()-1));
                 board[n.getY()-1][n.getX()+2] = board[n.getY()][n.getX()] + 1;
             }
-            // x-1 y-2 ˆÚ“®
+            // x-1 y-2 ç§»å‹•
             if (n.getX()-1 >= 0 && n.getY()-2 >= 0 && n.getX()-1 <= N && n.getY()-2 <= N && board[n.getY()-2][n.getX()-1] == -1) { 
                 queue.add(new Position(n.getX()-1, n.getY()-2));
                 board[n.getY()-2][n.getX()-1] = board[n.getY()][n.getX()] + 1;
             }
-            // x-2 y-1 ˆÚ“®
+            // x-2 y-1 ç§»å‹•
             if (n.getX()-2 >= 0 && n.getY()-1 >= 0 && n.getX()-2 <= N && n.getY()-1 <= N && board[n.getY()-1][n.getX()-2] == -1) { 
                 queue.add(new Position(n.getX()-2, n.getY()-1));
                 board[n.getY()-1][n.getX()-2] = board[n.getY()][n.getX()] + 1;
@@ -99,7 +99,7 @@ public class Main {
             
         }
         
-        // ”Õ–Ê‚ÌˆÚ“®‰ñ”‚ÌŠm”F
+        // ç›¤é¢ã®ç§»å‹•å›æ•°ã®ç¢ºèª
         /* for (int i=N; i >= 0; i--)  {
             for (int j = 0; j <= N; j++) {
                 System.out.print(String.format("%02d ", board[i][j]));
@@ -107,7 +107,7 @@ public class Main {
                 System.out.println();
         } */
         
-        // w’è‚³‚ê‚½À•W‚ÌÅ¬ˆÚ“®‰ñ”‚ğ•\¦
+        // æŒ‡å®šã•ã‚ŒãŸåº§æ¨™ã®æœ€å°ç§»å‹•å›æ•°ã‚’è¡¨ç¤º
         System.out.print(board[Y][X]);
         
     }
