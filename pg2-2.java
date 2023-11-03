@@ -3,48 +3,48 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         // pg2-2
-        // •W€“ü—Í‚ğæ“¾
+        // æ¨™æº–å…¥åŠ›ã‚’å–å¾—
         Scanner sc = new Scanner(System.in);
-        // •¶š—ñ‚ÌŒÂ”
+        // æ–‡å­—åˆ—ã®å€‹æ•°
         String str = sc.nextLine();
         
-        // Å‘å•¶š”
+        // æœ€å¤§æ–‡å­—æ•°
         int maxLength = 0;
-        // Å‘å•¶š”‚Ì‰ñ•¶
+        // æœ€å¤§æ–‡å­—æ•°ã®å›æ–‡
         String maxStr = "";
         
         for (int i=0; i<str.length(); i++) {
             for (int j=i+2; j<str.length(); j++) {
-                // •¶š—ñ‚ğØ‚èo‚µ
+                // æ–‡å­—åˆ—ã‚’åˆ‡ã‚Šå‡ºã—
                 String str2 = str.substring(i, j);
                 
-                // Ø‚èo‚µ‚½•¶š—ñ‚ª‰ñ•¶‚©ƒ`ƒFƒbƒN
+                // åˆ‡ã‚Šå‡ºã—ãŸæ–‡å­—åˆ—ãŒå›æ–‡ã‹ãƒã‚§ãƒƒã‚¯
                 if (kaibunCheck(str2)) {
-                    // Œ»“_‚ÌÅ‘å•¶š”‚æ‚è‘½‚¢‚©ƒ`ƒFƒbƒN
+                    // ç¾æ™‚ç‚¹ã®æœ€å¤§æ–‡å­—æ•°ã‚ˆã‚Šå¤šã„ã‹ãƒã‚§ãƒƒã‚¯
                     if (maxLength < str2.length()) {
-                        // Å‘å•¶š”‹y‚ÑÅ‘å•¶š”‚Ì‰ñ•¶‚ğXV
+                        // æœ€å¤§æ–‡å­—æ•°åŠã³æœ€å¤§æ–‡å­—æ•°ã®å›æ–‡ã‚’æ›´æ–°
                         maxLength = str2.length();
                         maxStr = str2;
                     }
                 }
             }
         }
-        // Å‘å•¶š”‚Ì‰ñ•¶‚ğo—Í
+        // æœ€å¤§æ–‡å­—æ•°ã®å›æ–‡ã‚’å‡ºåŠ›
         System.out.println(maxStr);
     }
     
     /**
-    * “ü—Í‚³‚ê‚½•¶š—ñ‚ª‰ñ•¶‚©ƒ`ƒFƒbƒN‚·‚é
-    * @param str •¶š—ñ
-    * @return ‰ñ•¶‚Å‚ ‚é‚©‚ÌŒ‹‰Ê
+    * å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒå›æ–‡ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+    * @param str æ–‡å­—åˆ—
+    * @return å›æ–‡ã§ã‚ã‚‹ã‹ã®çµæœ
     */
     public static boolean kaibunCheck(String str) {
-        // ”½“]‚µ‚½•¶š—ñ‚ğì¬
+        // åè»¢ã—ãŸæ–‡å­—åˆ—ã‚’ä½œæˆ
         StringBuilder sb = new StringBuilder();
         sb.append(str);
         sb.reverse();
         
-        // ”½“]‚µ‚½•¶š—ñ‚Æˆê’v‚·‚é‚©ƒ`ƒFƒbƒN
+        // åè»¢ã—ãŸæ–‡å­—åˆ—ã¨ä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
         if (str.equals(sb.toString())) {
             return true;
         } else {

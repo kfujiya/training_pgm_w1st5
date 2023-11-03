@@ -3,26 +3,26 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         // pg2-3
-        // •W€“ü—Í‚ğæ“¾
+        // æ¨™æº–å…¥åŠ›ã‚’å–å¾—
         Scanner sc = new Scanner(System.in);
-        // •¶š—ñ‚ÌŒÂ”
+        // æ–‡å­—åˆ—ã®å€‹æ•°
         int X = Integer.parseInt(sc.nextLine());
-        // Šùo•¶š—ñƒŠƒXƒg
+        // æ—¢å‡ºæ–‡å­—åˆ—ãƒªã‚¹ãƒˆ
         List<String> alreadyStrList = new ArrayList<String>();
         
         for (int k=0; k<X; k++) {
-            // •¶š—ñ‚ğæ“¾
+            // æ–‡å­—åˆ—ã‚’å–å¾—
             String S = sc.nextLine();
             
-            // Šùo•¶š—ñƒŠƒXƒg‚É•¶š—ñ‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+            // æ—¢å‡ºæ–‡å­—åˆ—ãƒªã‚¹ãƒˆã«æ–‡å­—åˆ—ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
             if (!alreadyStrList.contains(S)) {
-                // ‰‚ß‚Ä“oê‚µ‚½•¶š—ñ‚Ìê‡
-                System.out.println("‚©‚í‚¢‚¢`");
-                // Šùo•¶š—ñƒŠƒXƒg‚É’Ç‰Á
+                // åˆã‚ã¦ç™»å ´ã—ãŸæ–‡å­—åˆ—ã®å ´åˆ
+                System.out.println("ã‹ã‚ã„ã„ï½");
+                // æ—¢å‡ºæ–‡å­—åˆ—ãƒªã‚¹ãƒˆã«è¿½åŠ 
                 alreadyStrList.add(S);
             } else {
-                // ‰ß‹“n‚³‚ê‚½•¨‚Æ“¯‚¶•¶š—ñ‚Ìê‡
-                System.out.println("‚à‚¤Œ©‚½");
+                // éå»æ¸¡ã•ã‚ŒãŸç‰©ã¨åŒã˜æ–‡å­—åˆ—ã®å ´åˆ
+                System.out.println("ã‚‚ã†è¦‹ãŸ");
             }
         }
     }

@@ -3,26 +3,26 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         // pg2-1
-        // •W€“ü—Í‚ğæ“¾
+        // æ¨™æº–å…¥åŠ›ã‚’å–å¾—
         Scanner sc = new Scanner(System.in);
-        // •¶š—ñ‚ÌŒÂ”
+        // æ–‡å­—åˆ—ã®å€‹æ•°
         int X = Integer.parseInt(sc.nextLine());
         
         for (int k=0; k<X; k++) {
-            // •¶š—ñ‚ğæ“¾‚µA”¼ŠpƒXƒy[ƒX‚ğíœ
+            // æ–‡å­—åˆ—ã‚’å–å¾—ã—ã€åŠè§’ã‚¹ãƒšãƒ¼ã‚¹ã‚’å‰Šé™¤
             String str = sc.nextLine().replaceAll(" ", "");
             
-            // ”½“]‚µ‚½•¶š—ñ‚ğì¬
+            // åè»¢ã—ãŸæ–‡å­—åˆ—ã‚’ä½œæˆ
             StringBuilder sb = new StringBuilder();
             sb.append(str);
             sb.reverse();
             
-            // Œ³‚Ì•¶š—ñ‚Æ”½“]‚µ‚½•¶š—ñ‚ªˆê’v‚·‚é‚©ƒ`ƒFƒbƒN
+            // å…ƒã®æ–‡å­—åˆ—ã¨åè»¢ã—ãŸæ–‡å­—åˆ—ãŒä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
             if (str.equals(sb.toString())) {
-                // •¶š—ñˆÏ‚ªˆê’v‚µ‚½ê‡
+                // æ–‡å­—åˆ—å§”ãŒä¸€è‡´ã—ãŸå ´åˆ
                 System.out.println("Yes");
             } else {
-                // •¶š—ñˆÏ‚ªˆê’v‚µ‚È‚©‚Á‚½ê‡
+                // æ–‡å­—åˆ—å§”ãŒä¸€è‡´ã—ãªã‹ã£ãŸå ´åˆ
                 System.out.println("No");
             }
         }
