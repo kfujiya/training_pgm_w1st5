@@ -9,7 +9,7 @@ public class Reversi {
 	public static void main(String[] args) throws Exception {
 
 		//ゲームの初期化。オブジェクトを作って、盤面を初期化する。
-		Game game = new Game(8);
+		Game game = new Game(Global.BOARD_SIZE);
 		game.initialize();
 		game.printBoard();        //初期化状態の出力
 
@@ -146,6 +146,7 @@ class Game {
 
 		// (dx, dy) 方向に相手の石がある限り調べ続ける
 
+
 		// 相手の石以外が見つかったとき、それが自分の石なら、調べた相手の石の数を返す
 		// 自分の石でない(空または壁)だったら返せないので0を返す
 	}
@@ -227,6 +228,7 @@ class Game {
 		//System.out.print("(" + blackStone + ", " + whiteStone + ") ");
 
 		// 黒が多ければ黒の勝ち、白が多ければ白の勝ち、同数なら...
+		
 	}
 }
 
@@ -244,6 +246,7 @@ class Point {
  * グローバル値(石の色と勝敗定義)
  */
 class Global {
+	static final int BOARD_SIZE = 8;
 	static final int WALL = 0;
 	static final int BLACK = 1;
 	static final int WHITE = 2;
