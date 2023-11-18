@@ -145,6 +145,57 @@ class Game {
 		int enemy = player == Global.BLACK ? Global.WHITE : Global.BLACK;
 
 		// (dx, dy) 方向に相手の石がある限り調べ続ける
+		//横右チェック
+		if (col < 6 && board[row][col + 1] != 0 && board[row][col + 1] == enemy) {
+            for (int dy = col + 2; dy < 8; dy++) {
+                if (board[row][dy] == 0) {
+                    break;
+                }
+                if (board[row][dy] == player) {
+                    checkStep(player, row, col, row, dy);
+                    return checkStep;
+                }
+            }
+        }
+
+        //横左チェック
+        if (col > 1 && board[row][col - 1] != 0 && board[row][col - 1] == enemy) {
+            for (int dy = col - 2; dy > -1; dy--) {
+                if (board[row][dy] == 0) {
+                    break;
+                }
+                if (board[row][dy] == player) {
+                    checkStep(player, row, dy, row, col);
+                    return checkStep;
+                }
+            }
+        }
+
+        //縦下チェック
+        if (row < 6 && board[row + 1][col] != 0 && board[row + 1][col] == enemy) {
+            for (int dx = row + 2; dx < 8; dx++) {
+                if (board[dx][col] == 0) {
+                    break;
+                }
+                if (board[dx][col] == player) {
+                    checkStep(player, row, col, dx, col);
+                    return checkStep;
+                }
+            }
+        }
+
+        //縦上チェック
+        if (row > 1 && board[row - 1][col] != 0 && board[row - 1][col] == enemy) {
+            for (int dx = row - 2; dx > -1; dx++) {
+                if (board[dx][col] == 0) {
+                    break;
+                }
+                if (board[dx][col] == player) {
+                    checkStep(player, dx, col, row, col);
+                    return checkStep;
+                }
+            }
+        }
 
 		// 相手の石以外が見つかったとき、それが自分の石なら、調べた相手の石の数を返す
 		// 自分の石でない(空または壁)だったら返せないので0を返す
