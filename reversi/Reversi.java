@@ -145,6 +145,7 @@ int checkStep(int player, int col, int row, int dx, int dy) {
 	int enemy = player == Global.BLACK ? Global.WHITE : Global.BLACK;
 
 	// (dx, dy) 方向に相手の石がある限り調べ続ける
+	//縦チェック
 	if (col < Global.WALL && board[row][col + 1] != 0 && board[row][col + 1] == enemy) {
             for (int dy = col + 2; dy < 8; dy++) {
                 if (board[row][dy] == Global.EMPTY) {
@@ -167,6 +168,7 @@ int checkStep(int player, int col, int row, int dx, int dy) {
                 }
             }
         }
+	//横チェック
         if (row < Global.WALL && board[row + 1][col] != 0 && board[row + 1][col] == enemy) {
             for (int dx = row + 2; dx < 8; dx++) {
                 if (board[dx][col] == Global.EMPTY) {
