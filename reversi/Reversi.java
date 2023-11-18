@@ -218,17 +218,15 @@ class Game {
 	// 結果出力
 	void printResult() {
 
-		// ボードサイズ, 黒い石の数, 白い石の数
-		int boardSize = this.board.length - 2;
+		// 黒い石の数, 白い石の数
 		int blackStone = 0;
 		int whiteStone = 0;
 
-		// 石の数を数える
-		for(int y = 0; y < boardSize+2; y++) {
-
+		// 縦(列)
+		for(int y = 0; y < board.length; y++) {
 			// 横(行)
-			for(int x = 0; x < boardSize+2; x++) {
-				// 座標(x,y)の中身を空にする
+			for(int x = 0; x < board.length; x++) {
+				// 座標(x,y)の石をチェック
 				if(board[y][x] == Global.BLACK){
 					blackStone++;
 				}else if(board[y][x] == Global.WHITE){
@@ -236,7 +234,7 @@ class Game {
 				}
 			}
 		}
-		System.out.println("(●" + blackStone + ", ○" + whiteStone + ") ");
+		System.out.print("黒" + blackStone + ":白" + whiteStone + "で");
 
 		// 黒が多ければ黒の勝ち、白が多ければ白の勝ち、同数なら...
 		if(blackStone>whiteStone){
