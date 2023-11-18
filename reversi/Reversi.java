@@ -161,13 +161,21 @@ class Game {
 		int count = 0;
 
 		// 調べる方向を定義する(8方向)
+		int[] dx = {1, 1, 0, -1, -1, -1,  0,  1};
+		int[] dy = {0, 1, 1,  1,  0, -1, -1, -1}; 
 
 		// そもそも(row, col)に石が置けないならダメ
+		if(board[col][row] != Global.EMPTY) {
+			return 0;
+		}
 
 		// 石を置けるなら、調べる８方向について
+		for(int direction = 0; direction < dx.length; direction++) {
 			// 「１方向だけ調べる関数」で返せる個数を調べる
+			count += checkStep(player, col, row, dx[direction], dy[direction]);
 		
 		// ８方向の返せる数の合計を返す
+		return count;
 	}
 
 	// 石を置ける場所のリストを出力する（使っても使わなくてもいいです）
