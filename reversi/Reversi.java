@@ -209,13 +209,50 @@ class Game {
 		return regalList;
 	}
 
-	// 実際に８方向について石を置いて反転させる
+	/** 実際に８方向について石を置いて反転させる
+	 *  player : ターンプレイヤー
+	 *  col : 石を置きたい座標(縦)
+	 *  row : 石を置きたい座標(横)
+	 *  return count : 反転させた石の数
+	 **/
 	int action(int player, int col, int row) {
 
 		//反転させた石の数
 		int count = 0;
 
-			// checkActionとほぼ同じで、実際に反転できるなら反転させる
+		// 調べる方向を定義する(8方向)
+		int[] dx = {1, 1, 0, -1, -1, -1,  0,  1};
+		int[] dy = {0, 1, 1,  1,  0, -1, -1, -1}; 
+
+		// そもそも(row, col)に石が置けないならダメ
+		if(board[col][row] != Global.EMPTY) {
+			return 0;
+		}
+
+		// 石を置けるなら、調べる８方向について
+		for(int direction = 0; direction < dx.length; direction++) {
+	
+			// 「１方向だけ調べる関数」で返せる個数を調べる
+			int countDirection = checkStep(player, col, row, dx[direction], dy[direction]);
+
+			// 実際に反転させる座標を保持する
+			int reversePointX = col;
+			int reversePointY = row;
+
+			// 調べた方向に対し、調べた個数回、石をプレイヤーの色に反転させる。
+			for (int countReverse = 0; countReverse < countDirection; countReverse++) {
+
+				// 調べた方向に座標をずらしていき、反転する座標を設定
+				reversePointX += dx[direction];
+				reversePointY += dy[direction];
+
+				// 反転させる
+				board[reversePointY][reversePointX] = player;
+			}
+
+			// 反転した個数をカウント
+			count += countDirection;
+		}
 
 		// 最後に置きたかった場所に石を置く
 		board[row][col] = player;
