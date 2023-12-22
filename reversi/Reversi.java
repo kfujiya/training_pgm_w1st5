@@ -9,7 +9,7 @@ public class Reversi {
 	public static void main(String[] args) throws Exception {
 
 		//ゲームの初期化。オブジェクトを作って、盤面を初期化する。
-		Game game = new Game(8);
+		Game game = new Game(Global.BOARD_SIZE);
 		game.initialize();
 		game.printBoard();        //初期化状態の出力
 
@@ -269,6 +269,7 @@ class Point {
  * グローバル値(石の色と勝敗定義)
  */
 class Global {
+	static final int BOARD_SIZE = 8;
 	static final int WALL = 0;
 	static final int BLACK = 1;
 	static final int WHITE = 2;
