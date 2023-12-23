@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Reversi {
 
@@ -11,10 +12,9 @@ public class Reversi {
 		//ゲームの初期化。オブジェクトを作って、盤面を初期化する。
 		Game game = new Game(Global.BOARD_SIZE);
 		game.initialize();
-		game.printBoard();        //初期化状態の出力
 
 		//開始プレイヤーの色を決定する
-		int player = BLACK;
+		int player = Global.BLACK;
 
 		//前ターンはスキップだったか
 		boolean isSkipBefore = false;
@@ -22,33 +22,106 @@ public class Reversi {
 		//このターンスキップするか
 		boolean skipFlag = false;
 
+		// 合法手か？
+		boolean isRegal = false;
+
+		// 入力用
+		Scanner scanner = new Scanner(System.in);
+
+		// 入力手記録用
+		int handX = 1;
+		int handY = 1;
+
+		//列(column)の名前はA-Hなので定義しておく
+		final String[] columnName = {"WALL", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"};
+
 		//勝敗が決まるまで処理を行う
 		do {
 
 			// ここから各ターンの処理
+			if(player == Global.BLACK) {
+				System.out.println("黒のターンです。");
+			} else {
+				System.out.println("白のターンです。");
+			}
+			Thread.sleep(1000);
 
 			// ターンプレイヤーが置ける場所があるか確認する
+			List<Point> regalHand = game.getRegalHand(player);
+
 			// ないならターン終了
-
+			if(regalHand.size() == 0) {
+				System.out.println("配置できる場所がないため、ターンをスキップします。");
+				isSkipBefore = skipFlag;
+				skipFlag = true;
+			} else {
 			// あるなら
-			// ターンプレイヤーが置ける場所を指示するまで
-			do {
+				System.out.println("現在の盤面は以下の通りです。");
+				game.printBoard();
+				Thread.sleep(1000);
 
-				// プレイヤーに入力を促す標準出力
+				System.out.println("現在おける場所は以下のとおりです");
+				for(Point hand : regalHand) {
+					System.out.print("(" + columnName[hand.col] + hand.row + "), ");
+				}
 
-				// 入力された座標に置けるか確認する
-			} while( /** 置ける座標が入力されるまで **/ );
+				// ターンプレイヤーが置ける場所を指示するまで
+				do {
+					isRegal = false;
 
-			// 入力された座標に石を配置して、可能な限りひっくり返す
+					// プレイヤーに入力を促す標準出力
+					System.out.println("どこに石を置きますか？  'A1' のように2文字で入力してください。");
+					String inp = scanner.nextLine();
 
-			// 次のターンへ(ターンプレイヤーを入れ替える)
-			
-		} while ( /** 勝敗が決するまで or 2連続でスキップするまで **/ );
+					if(inp.length() != 2) {
+						System.out.println("入力は 'A1' のようにアルファベット1文字と数字1文字で入れてください");
+						Thread.sleep(1000);
+						continue;
+					}
+
+					// 入力された座標に置けるか確認する
+					try {
+						handX = Integer.parseInt(inp.substring(1,2));
+						handY = -1;
+						for(int k = 0; k < columnName.length; k++) {
+							if(columnName[k].equals(inp.substring(0,1))) {
+								handY = k;
+							}
+						}
+
+						if(handY == -1) {
+							System.out.println("入力値が正しくありません");
+							continue;
+						}
+					} catch (Exception e) {
+						System.out.println("入力値が正しくありません");
+						continue;
+					}
+
+					//System.out.println("debug input is (" + handX + ", " + handY + ")" );
+					for(Point hand : regalHand) {
+						if(hand.row == handX && hand.col == handY) {
+							isRegal = true;
+						}
+					}
+				} while( !isRegal );
+
+				// 入力された座標に石を配置して、可能な限りひっくり返す
+				game.action(player, handY, handX);
+
+				// スキップではないのでスキップしていないことを記録
+				isSkipBefore = skipFlag;
+				skipFlag = false;
+			}
+
+			// ターンプレイヤーを入れ替える
+			player = player == Global.BLACK ? Global.WHITE : Global.BLACK;
+		} while ( !isSkipBefore || !skipFlag );
 
 		//結果を出力する
-		System.out.println("");
-		game.PrintField();        //最終結果のフィールド表示
-		game.PrintResult();
+		System.out.println("ゲームが終了しました。");
+		game.printBoard();        //最終結果のフィールド表示
+		game.printResult();
 	}
 }
 
@@ -105,13 +178,15 @@ class Game {
 		
 		// ボードサイズを取得
 		int boardSize = board.length;
+		final String[] columnName = {"　", "Ａ", "Ｂ", "Ｃ", "Ｄ", "Ｅ", "Ｆ", "Ｇ", "Ｈ", "Ｉ", "Ｊ", "Ｋ"};
 
+		System.out.println("　　１２３４５６７８");
 		// 縦(列)
 		for(int y = 0; y < boardSize; y++) {
+			System.out.print(columnName[y]);
 
 			// 横(行)
 			for(int x = 0; x < boardSize; x++) {
-				
 				// 種類によって表示を出し分ける
 				if(board[y][x] == Global.WALL) {
 					System.out.print("□");
@@ -141,13 +216,28 @@ class Game {
 	 **/
 	int checkStep(int player, int col, int row, int dx, int dy) {
 
-		// 相手側の石の色調べる
+		// 相手側の石の色を調べる
 		int enemy = player == Global.BLACK ? Global.WHITE : Global.BLACK;
 
 		// (dx, dy) 方向に相手の石がある限り調べ続ける
+		if(board[col][row] != Global.EMPTY) {
+			return 0;
+		}
+		
+		int length = 1;
+		while(board[col+length*dy][row+length*dx] == enemy) {
+			length++;
+			int px = (row+length*dx);
+			int py = (col+length*dy);
+		}
 
 		// 相手の石以外が見つかったとき、それが自分の石なら、調べた相手の石の数を返す
+		if(board[col+length*dy][row+length*dx] == player) {
+			return length-1;
+		} else {
 		// 自分の石でない(空または壁)だったら返せないので0を返す
+			return 0;
+		}
 	}
 
 	/** ８方向に対して石を返せるか計算する
@@ -173,6 +263,7 @@ class Game {
 		for(int direction = 0; direction < dx.length; direction++) {
 			// 「１方向だけ調べる関数」で返せる個数を調べる
 			count += checkStep(player, col, row, dx[direction], dy[direction]);
+		}
 		
 		// ８方向の返せる数の合計を返す
 		return count;
@@ -194,12 +285,12 @@ class Game {
 			for(int x = 1; x <= boardSize; x++) {
 
 				// ８方向確認して0でない(置けるし、1個以上反転できる)なら
-				if(checkAction(player, x, y) != 0) {
+				if(checkAction(player, y, x) != 0) {
 
 					// 合法手リストに加える
 					Point p = new Point();
-					p.col = x;
-					p.row = y;
+					p.col = y;
+					p.row = x;
 					regalList.add(p);
 				}
 			}
@@ -236,8 +327,8 @@ class Game {
 			int countDirection = checkStep(player, col, row, dx[direction], dy[direction]);
 
 			// 実際に反転させる座標を保持する
-			int reversePointX = col;
-			int reversePointY = row;
+			int reversePointX = row;
+			int reversePointY = col;
 
 			// 調べた方向に対し、調べた個数回、石をプレイヤーの色に反転させる。
 			for (int countReverse = 0; countReverse < countDirection; countReverse++) {
@@ -247,6 +338,7 @@ class Game {
 				reversePointY += dy[direction];
 
 				// 反転させる
+				//System.out.println("debug reverse (" + reversePointX + ", " + reversePointY + ")");
 				board[reversePointY][reversePointX] = player;
 			}
 
@@ -255,7 +347,8 @@ class Game {
 		}
 
 		// 最後に置きたかった場所に石を置く
-		board[row][col] = player;
+		//System.out.println("debug put (" + row + ", " + col + ")");
+		board[col][row] = player;
 
 		return count;
 	}
